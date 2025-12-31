@@ -8,7 +8,7 @@ UPDATE Products SET sold_quantity = 20 WHERE product_id = 3;
 UPDATE Products SET sold_quantity = 25 WHERE product_id = 4;
 UPDATE Products SET sold_quantity = 20 WHERE product_id = 5;
 
-INSERT INTO Products(product_id, product_name, price, sold_quantity) VALUES
+INSERT INTO Products(product_id, product_name, price, stock, product_status, sold_quantity) VALUES
 (6, 'Điện thoại A1', 4990000.00, 150),
 (7, 'Tai nghe Bluetooth X', 750000.00, 320),
 (8, 'Laptop Lite 14"', 12990000.00, 45),
