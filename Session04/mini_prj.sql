@@ -3,20 +3,20 @@ USE Session04;
 
 -- Phần I
 CREATE TABLE Student (
-	student_id int primary key,
+	student_id int primary key auto_increment,
     student_name varchar(100) not null,
     date_of_birth date not null,
     email varchar(100) unique not null
 );
 
 CREATE TABLE Teacher (
-	teacher_id int primary key,
+	teacher_id int primary key auto_increment,
     teacher_name varchar(100) not null,
     email varchar(100) unique not null
 );
 
 CREATE TABLE Course (
-	course_id int primary key,
+	course_id int primary key auto_increment,
     course_name varchar(100) not null,
     describle varchar(255),
     number_of_lesson int check (number_of_lesson > 5),
@@ -27,7 +27,7 @@ CREATE TABLE Course (
 CREATE TABLE Enrollment (
 	student_id int,
     course_id int,
-    registration_date date,
+    registration_date date default(current_date()),
     primary key (student_id, course_id),
     foreign key (student_id) references Student(student_id),
     foreign key (course_id) references Course(course_id)
@@ -82,7 +82,7 @@ INSERT INTO Score (student_id, course_id, mid_score, final_score) VALUES
 -- Phần III
 UPDATE Student
 SET email = 'lemonboy2k6@gmail.com'
-WHERE student_id = 1;
+WHERE student_id = 1 AND NOT EXISTS (SELECT 1 FROM Student WHERE email = 'lemonboy2k6@gmail.com');
 
 UPDATE Course
 SET describle = 'Lap trinh C++'
