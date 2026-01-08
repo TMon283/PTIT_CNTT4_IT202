@@ -24,7 +24,7 @@ CREATE TABLE products(
 CREATE TABLE orders(
 	order_id int primary key auto_increment,
     customer_id int not null,
-    order_date datetime default(current_date()),
+    order_date datetime default(current_date()) not null,
     status enum('pending','completed','cancel') default('pending')
 );
 
@@ -148,7 +148,8 @@ WHERE oi_totals.total_quantity = (
 	SELECT MAX(total_quantity) 
 	FROM (
 		SELECT order_id, SUM(quantity) AS total_quantity 
-		FROM order_items GROUP BY order_id
+		FROM order_items 
+        GROUP BY order_id
 	  ) AS totals
 );
 
@@ -172,7 +173,6 @@ WHERE customer_id IN (
     )
   )
 );
-
 
 -- Từ bảng tạm (subquery), thống kê tổng số lượng sản phẩm đã mua của từng khách hàng
 SELECT o.customer_id,
