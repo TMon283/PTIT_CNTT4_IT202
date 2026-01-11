@@ -72,7 +72,11 @@ WHERE customer_id = 'C001';
 
 -- 4. Thay đổi kho hàng với product_id = 'P003', cập nhật stock_quantity tăng thêm 50 đơn vị và tăng product_price lên 10%
 UPDATE products
-SET stock_quantity = stock_quantity + 50 AND product_price = product_price * 1.1
+SET stock_quantity = stock_quantity + 50 
+WHERE product_id = 'P003';
+
+UPDATE products
+SET product_price = product_price * 1.1
 WHERE product_id = 'P003';
 
 -- 5. Xóa tất cả các bản ghi trong bảng Payment có payment_status là "Pending" và phương thức thanh toán là "Banking"
