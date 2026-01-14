@@ -31,14 +31,16 @@ create table Friends (
     friend_id int,
     status varchar(20) check (status in ('pending','accepted')),
     foreign key (user_id) references Users(user_id),
-    foreign key (friend_id) references Users(user_id)
+    foreign key (friend_id) references Users(user_id),
+    primary key(user_id, post_id)
 );
 
 create table Likes(
 	user_id int,
 	post_id int,
     foreign key(user_id) references Users(user_id),
-    foreign key(post_id) references Posts(post_id)
+    foreign key(post_id) references Posts(post_id),
+    primary key(user_id, post_id)
 );
 
 -- Bài 1. Quản lý người dùng
@@ -46,11 +48,11 @@ create table Likes(
 -- Thêm người dùng mới
 -- Hiển thị danh sách người dùng.
 insert into Users (user_id, username, password, email) values
-(1, 'an', '123', 'an@gmail.com'),
-(2, 'binh', '123', 'binh@gmail.com'),
+(1, 'yen', '123', 'yen@gmail.com'),
+(2, 'bao', '123', 'bao@gmail.com'),
 (3, 'cuong', '123', 'cuong@gmail.com'),
 (4, 'duy', '123', 'duy@gmail.com'),
-(5, 'hoa', '123', 'hoa@gmail.com'),
+(5, 'my', '123', 'my@gmail.com'),
 (6, 'khanh', '123', 'khanh@gmail.com'),
 (7, 'linh', '123', 'linh@gmail.com'),
 (8, 'minh', '123', 'minh@gmail.com'),
@@ -87,7 +89,7 @@ select * from  vw_public_users;
 -- => Sau mức Trung bình, sinh viên đã xây dựng được:
 -- Chức năng đăng ký – xem hồ sơ – tìm kiếm người dùng
 create index idx_users_username on Users(username);
-
+SELECT * FROM users WHERE username LIKE '%an%';
 -- Bài 4. Quản lý bài viết bằng Stored Procedure
 -- Chức năng mô phỏng: Đăng bài viết
 -- Yêu cầu
