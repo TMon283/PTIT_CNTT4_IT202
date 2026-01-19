@@ -362,7 +362,6 @@ select * from deleted_posts_log;
 
 -- F12: Quản lý xóa tài khoản người dùng
 delimiter $$
-drop procedure if exists sp_delete_user $$
 create procedure sp_delete_user(
     in p_user_id int
 )
@@ -381,7 +380,6 @@ begin
         end if;
 
         -- xóa người dùng
-        -- toàn bộ posts, comments, likes, friends sẽ tự động bị xóa nhờ on delete cascade
         delete from users where user_id = p_user_id;
 
     commit;
